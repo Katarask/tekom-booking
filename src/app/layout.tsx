@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Deniz Levent Tulay", url: "https://denizleventtulay.de" }],
   creator: "Deniz Levent Tulay",
-  publisher: "TEKOM GmbH",
+  publisher: "Deniz Levent Tulay",
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -79,9 +79,6 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   category: "Business",
-  verification: {
-    google: "google-site-verification-code", // Später ersetzen
-  },
 };
 
 export default function RootLayout({
@@ -89,70 +86,61 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // JSON-LD Structured Data - Organization
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "TEKOM GmbH",
-    url: "https://tekom-gmbh.de",
-    logo: `${siteUrl}/favicon.svg`,
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+49-XXX-XXXXXXX",
-      contactType: "customer service",
-      availableLanguage: ["German", "English"],
-    },
-  };
-
-  // JSON-LD Structured Data - Person (Recruiter)
+  // JSON-LD Structured Data - Person (Personal Brand)
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": "https://denizleventtulay.de/#person",
     name: "Deniz Levent Tulay",
+    givenName: "Deniz Levent",
+    familyName: "Tulay",
     jobTitle: "Tech Recruiter & Headhunter",
+    description: "Tech Recruiter spezialisiert auf IT-Fachkräfte in Deutschland. Kostenlose Karriereberatung für Software Developer, DevOps Engineers und IT-Spezialisten.",
     url: "https://denizleventtulay.de",
+    image: `${siteUrl}/og-image.svg`,
     sameAs: [
       "https://linkedin.com/in/denizleventtulay",
+      "https://denizleventtulay.de",
     ],
-    worksFor: {
-      "@type": "Organization",
-      name: "TEKOM GmbH",
-    },
+    knowsAbout: [
+      "Tech Recruiting",
+      "IT Headhunting",
+      "Karriereberatung",
+      "Software Development",
+      "DevOps",
+      "IT-Branche Deutschland",
+    ],
+    knowsLanguage: ["de", "en", "tr"],
   };
 
-  // JSON-LD Structured Data - Service
+  // JSON-LD Structured Data - Service (von Person angeboten)
   const serviceSchema = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "Tech Recruiting Beratung",
-    description: "Kostenlose Karriereberatung für IT-Fachkräfte - Vermittlung von Software Developers, DevOps Engineers und IT-Spezialisten",
+    "@type": "Service",
+    name: "Karriereberatung für IT-Fachkräfte",
+    description: "Kostenlose 30-minütige Karriereberatung per Microsoft Teams. Individuelle Beratung zu Jobmöglichkeiten, Gehaltsverhandlung und Karriereplanung in der IT-Branche.",
     url: siteUrl,
-    logo: `${siteUrl}/favicon.svg`,
-    image: `${siteUrl}/og-image.png`,
-    priceRange: "Kostenlos für Kandidaten",
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "DE",
-      addressRegion: "Berlin",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "52.5200",
-      longitude: "13.4050",
+    image: `${siteUrl}/og-image.svg`,
+    provider: {
+      "@type": "Person",
+      "@id": "https://denizleventtulay.de/#person",
+      name: "Deniz Levent Tulay",
     },
     areaServed: {
       "@type": "Country",
       name: "Germany",
     },
-    serviceType: [
-      "Tech Recruiting",
-      "IT Headhunting",
-      "Karriereberatung",
-      "Personalvermittlung IT",
-    ],
-    provider: {
-      "@type": "Person",
-      name: "Deniz Levent Tulay",
+    serviceType: "Karriereberatung",
+    audience: {
+      "@type": "Audience",
+      audienceType: "IT-Fachkräfte",
+    },
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "EUR",
+      description: "Kostenloses 30-minütiges Beratungsgespräch",
+      availability: "https://schema.org/InStock",
     },
     potentialAction: {
       "@type": "ReserveAction",
@@ -169,24 +157,19 @@ export default function RootLayout({
         name: "Beratungstermin",
       },
     },
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "EUR",
-      description: "Kostenloses 30-minütiges Beratungsgespräch",
-    },
   };
 
-  // JSON-LD Structured Data - WebSite with SearchAction
+  // JSON-LD Structured Data - WebSite
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Deniz Levent Tulay - Tech Recruiter Terminbuchung",
+    name: "Deniz Levent Tulay - Terminbuchung",
     url: siteUrl,
-    description: "Online-Terminbuchung für Beratungsgespräche mit Tech Recruiter Deniz Levent Tulay",
+    description: "Online-Terminbuchung für kostenlose Karriereberatung mit Tech Recruiter Deniz Levent Tulay",
     inLanguage: "de-DE",
-    publisher: {
+    author: {
       "@type": "Person",
+      "@id": "https://denizleventtulay.de/#person",
       name: "Deniz Levent Tulay",
     },
   };
@@ -217,10 +200,6 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
         <meta name="theme-color" content="#652126" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
