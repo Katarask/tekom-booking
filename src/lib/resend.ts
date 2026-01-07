@@ -13,10 +13,13 @@ const FROM_NAME = process.env.FROM_NAME || "TEKOM Recruiting";
 export async function sendConfirmationEmail(
   data: ConfirmationEmailData
 ): Promise<void> {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://termine.denizleventtulay.de";
 
   console.log("📧 Sending confirmation email to:", data.to);
   console.log("📧 From:", `${FROM_NAME} <${FROM_EMAIL}>`);
+  console.log("📧 Base URL:", baseUrl);
+  console.log("📧 Cancel Link:", `${baseUrl}/booking/cancel/${data.bookingId}`);
+  console.log("📧 Reschedule Link:", `${baseUrl}/booking/reschedule/${data.bookingId}`);
 
   const result = await resend.emails.send({
     from: `${FROM_NAME} <${FROM_EMAIL}>`,
@@ -63,7 +66,7 @@ export async function sendCancellationEmail(data: {
   date: string;
   time: string;
 }): Promise<void> {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://termine.denizleventtulay.de";
 
   await resend.emails.send({
     from: `${FROM_NAME} <${FROM_EMAIL}>`,
