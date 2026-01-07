@@ -20,6 +20,8 @@ interface BookingReminderProps {
   hoursUntil?: number;
 }
 
+const BASE_URL = "https://termine.denizleventtulay.de";
+
 export default function BookingReminder({
   name = "Max",
   date = "Freitag, 10. Januar 2025",
@@ -43,9 +45,8 @@ export default function BookingReminder({
         <Container style={container}>
           {/* Header */}
           <Section style={header}>
-            <Text style={logo}>
-              <span style={logoDot}>●</span> ~DENIZ
-            </Text>
+            <Text style={headerTitle}>Deniz Levent Tulay</Text>
+            <Text style={headerSubtitle}>Headhunting / Personalberatung</Text>
           </Section>
 
           {/* Icon */}
@@ -105,12 +106,9 @@ export default function BookingReminder({
               <strong>Deniz Levent Tulay</strong>
             </Text>
             <Text style={signatureRole}>
-              Tech Recruiter & Headhunter
+              Headhunting / Personalberatung
             </Text>
-          </Section>
-
-          <Section style={companyInfo}>
-            <Text style={companyText}>
+            <Text style={signatureContact}>
               📱 0172 293 5160
               <br />
               ✉️{" "}
@@ -122,9 +120,9 @@ export default function BookingReminder({
 
           {/* Footer */}
           <Section style={footer}>
-            <Text style={footerText}>
+            <Link href={BASE_URL} style={footerWebsite}>
               termine.denizleventtulay.de
-            </Text>
+            </Link>
           </Section>
         </Container>
       </Body>
@@ -154,21 +152,26 @@ const container = {
 
 const header = {
   backgroundColor: colors.dark,
-  padding: "16px 24px",
+  padding: "24px",
   marginBottom: "30px",
+  textAlign: "center" as const,
 };
 
-const logo = {
-  fontSize: "14px",
-  fontWeight: "400",
+const headerTitle = {
+  fontSize: "18px",
+  fontWeight: "600",
   color: colors.cream,
-  margin: "0",
-  letterSpacing: "0.1em",
+  margin: "0 0 4px 0",
+  letterSpacing: "0.05em",
 };
 
-const logoDot = {
+const headerSubtitle = {
+  fontSize: "11px",
+  fontWeight: "400",
   color: colors.burgundy,
-  marginRight: "8px",
+  margin: "0",
+  letterSpacing: "0.15em",
+  textTransform: "uppercase" as const,
 };
 
 const iconSection = {
@@ -269,7 +272,7 @@ const hr = {
 };
 
 const signatureSection = {
-  marginBottom: "10px",
+  marginBottom: "30px",
 };
 
 const signatureText = {
@@ -281,18 +284,13 @@ const signatureText = {
 
 const signatureRole = {
   fontSize: "11px",
-  color: colors.dark,
-  opacity: 0.5,
+  color: colors.burgundy,
   letterSpacing: "0.1em",
-  margin: "0",
+  margin: "0 0 12px 0",
+  fontWeight: "600",
 };
 
-const companyInfo = {
-  marginTop: "15px",
-  marginBottom: "30px",
-};
-
-const companyText = {
+const signatureContact = {
   fontSize: "12px",
   color: colors.dark,
   lineHeight: "1.8",
@@ -311,10 +309,10 @@ const footer = {
   paddingTop: "20px",
 };
 
-const footerText = {
+const footerWebsite = {
   fontSize: "11px",
   color: colors.dark,
   opacity: 0.4,
   letterSpacing: "0.1em",
-  margin: "0",
+  textDecoration: "none",
 };
