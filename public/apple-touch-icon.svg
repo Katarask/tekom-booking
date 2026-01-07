@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <!-- Background -->
+  <rect width="180" height="180" rx="40" fill="#0a0a0a"/>
+  <!-- Corner pieces - Top Left -->
+  <path d="M36 63 L36 36 L63 36" stroke="#DBD6CC" stroke-width="5" fill="none"/>
+  <!-- Corner pieces - Top Right -->
+  <path d="M117 36 L144 36 L144 63" stroke="#DBD6CC" stroke-width="5" fill="none"/>
+  <!-- Corner pieces - Bottom Right -->
+  <path d="M144 117 L144 144 L117 144" stroke="#DBD6CC" stroke-width="5" fill="none"/>
+  <!-- Corner pieces - Bottom Left -->
+  <path d="M63 144 L36 144 L36 117" stroke="#DBD6CC" stroke-width="5" fill="none"/>
+  <!-- D letter -->
+  <path d="M59 76 L59 104 L69 104 C80 104 87 97 87 90 C87 83 80 76 69 76 Z M65 82 L69 82 C76 82 81 85 81 90 C81 95 76 98 69 98 L65 98 Z" fill="#DBD6CC"/>
+  <!-- T letter -->
+  <path d="M94 76 L94 82 L104 82 L104 104 L110 104 L110 82 L120 82 L120 76 Z" fill="#DBD6CC"/>
+</svg>

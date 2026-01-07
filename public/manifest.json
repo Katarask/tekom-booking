@@ -1,0 +1,26 @@
+{
+  "name": "Deniz Levent Tulay - Terminbuchung",
+  "short_name": "DLT Termine",
+  "description": "Buchen Sie Ihr kostenloses Beratungsgespräch mit Tech Recruiter Deniz Levent Tulay",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#EFEDE5",
+  "theme_color": "#652126",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "apple touch icon"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "de-DE"
+}
