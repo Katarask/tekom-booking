@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* JetBrains Mono Font */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;300;400;500;600&display=swap');
+
+@layer base {
+  :root {
+    /* Brand Colors - denizleventtulay.de */
+    --sand: #DBD6CC;
+    --cream: #EFEDE5;
+    --burgundy: #652126;
+    --dark: #0a0a0a;
+    --dark-alt: #151413;
+
+    /* Semantic CSS Variables */
+    --background: 40 15% 93%; /* cream */
+    --foreground: 0 0% 4%; /* dark */
+    --card: 40 15% 93%;
+    --card-foreground: 0 0% 4%;
+    --popover: 40 15% 93%;
+    --popover-foreground: 0 0% 4%;
+    --primary: 356 52% 26%; /* burgundy */
+    --primary-foreground: 40 15% 93%;
+    --secondary: 37 18% 82%; /* sand */
+    --secondary-foreground: 0 0% 4%;
+    --muted: 37 18% 82%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 356 52% 26%;
+    --accent-foreground: 40 15% 93%;
+    --destructive: 356 52% 26%;
+    --destructive-foreground: 40 15% 93%;
+    --border: 37 18% 75%;
+    --input: 37 18% 75%;
+    --ring: 356 52% 26%;
+    --radius: 0.5rem;
+
+    /* Status Colors */
+    --success: #2D5A3D;
+    --warning: #8B6914;
+    --danger: #652126;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 40 15% 93%;
+    --card: 0 0% 8%;
+    --card-foreground: 40 15% 93%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 40 15% 93%;
+    --primary: 356 52% 26%;
+    --primary-foreground: 40 15% 93%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 40 15% 93%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 37 18% 65%;
+    --accent: 356 52% 26%;
+    --accent-foreground: 40 15% 93%;
+    --destructive: 356 52% 26%;
+    --destructive-foreground: 40 15% 93%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 356 52% 26%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Hide scrollbar */
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+}
+
+/* Custom Form Styling */
+@layer components {
+  .btn-primary {
+    @apply bg-burgundy text-cream px-6 py-3 font-mono text-xs uppercase tracking-widest;
+    @apply hover:bg-opacity-90 transition-all duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-sand text-dark px-6 py-3 font-mono text-xs uppercase tracking-widest;
+    @apply border border-dark/10 hover:border-dark/30 transition-all duration-200;
+  }
+
+  .card-brand {
+    @apply bg-cream border border-sand/50 rounded-lg;
+  }
+
+  .input-brand {
+    @apply bg-cream border border-sand focus:border-burgundy focus:ring-1 focus:ring-burgundy;
+    @apply font-mono text-dark placeholder:text-dark/40;
+  }
+}

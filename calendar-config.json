@@ -1,0 +1,18 @@
+{
+  "startHour": 9,
+  "endHour": 17,
+  "slotDuration": 30,
+  "bufferMinutes": 0,
+  "workingDays": [1, 2, 3, 4, 5],
+  "breaks": [
+    {
+      "startHour": 12,
+      "startMinute": 0,
+      "endHour": 13,
+      "endMinute": 0
+    }
+  ],
+  "blockedDates": [],
+  "advanceBookingDays": 30,
+  "minimumNoticeHours": 24
+}

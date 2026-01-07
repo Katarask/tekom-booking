@@ -1,0 +1,17 @@
+# Robots.txt for termine.denizleventtulay.de
+
+User-agent: *
+Allow: /
+Allow: /booking
+
+# Don't index transactional pages
+Disallow: /booking/details
+Disallow: /booking/confirmation
+Disallow: /booking/cancel
+Disallow: /booking/reschedule
+Disallow: /admin
+Disallow: /api/
+Disallow: /embed/
+
+# Sitemap
+Sitemap: https://termine.denizleventtulay.de/sitemap.xml

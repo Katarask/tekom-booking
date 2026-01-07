@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Widget Test</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      padding: 40px;
+      background: #f5f5f5;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .demo-section {
+      margin: 30px 0;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>TEKOM Booking Widget Test</h1>
+
+  <div class="demo-section">
+    <h2>Option 1: Button mit Modal</h2>
+    <p>Klicke auf den Button um das Buchungsformular zu oeffnen:</p>
+    <div id="booking-button"></div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Option 2: Beliebiges Element</h2>
+    <p>Jedes Element mit data-tekom-booking Attribut oeffnet das Modal:</p>
+    <a href="#" data-tekom-booking style="color: #652126; font-weight: bold;">
+      Termin vereinbaren →
+    </a>
+  </div>
+
+  <!-- Widget Script -->
+  <script src="/widget.js" data-base-url="http://localhost:3002"></script>
+
+  <script>
+    // Button erstellen
+    TekomBooking.createButton('#booking-button', {
+      text: 'Beratungstermin buchen',
+      style: 'default'
+    });
+  </script>
+</body>
+</html>

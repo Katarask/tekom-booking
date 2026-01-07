@@ -1,0 +1,50 @@
+{
+  "name": "tekom-booking",
+  "version": "1.0.0",
+  "description": "TEKOM Kandidaten-Booking System - Calendly Alternative",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "email": "email dev"
+  },
+  "dependencies": {
+    "@microsoft/microsoft-graph-client": "^3.0.7",
+    "@notionhq/client": "^2.2.14",
+    "@radix-ui/react-checkbox": "^1.1.0",
+    "@radix-ui/react-dialog": "^1.1.0",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-radio-group": "^1.2.0",
+    "@radix-ui/react-select": "^2.1.0",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@react-email/components": "^0.0.31",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "date-fns": "^3.3.1",
+    "isomorphic-fetch": "^3.0.0",
+    "lucide-react": "^0.469.0",
+    "next": "15.3.3",
+    "react": "^19.0.0",
+    "react-day-picker": "^9.5.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.54.0",
+    "resend": "^4.0.0",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "15.3.3",
+    "postcss": "^8.4.33",
+    "react-email": "^3.0.0",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3"
+  }
+}
