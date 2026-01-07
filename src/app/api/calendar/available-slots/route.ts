@@ -19,9 +19,9 @@ const isAzureConfigured = () => {
   );
 };
 
-// Generate slots based on calendar config
-function generateConfiguredSlots(startDate: Date, endDate: Date): TimeSlot[] {
-  const config = getCalendarConfig();
+// Generate slots based on calendar config (now async)
+async function generateConfiguredSlots(startDate: Date, endDate: Date): Promise<TimeSlot[]> {
+  const config = await getCalendarConfig();
   const slots: TimeSlot[] = [];
   const currentDate = new Date(startDate);
   const allTimes = generateConfiguredTimeSlots(config);
@@ -88,7 +88,7 @@ export async function GET(request: NextRequest) {
     } else {
       // Use configured slots (from admin panel)
       console.log("⚠️ Azure not configured - using configured slots");
-      slots = generateConfiguredSlots(startDate, endDate);
+      slots = await generateConfiguredSlots(startDate, endDate);
     }
 
     return NextResponse.json({ slots });

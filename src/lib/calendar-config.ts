@@ -1,6 +1,5 @@
-// Calendar configuration stored in a JSON file
-import fs from "fs";
-import path from "path";
+// Calendar configuration stored in Vercel KV (Redis)
+import { kv } from "@vercel/kv";
 
 export interface CalendarConfig {
   // Working hours
@@ -34,7 +33,7 @@ export interface CalendarConfig {
   minimumNoticeHours: number; // e.g., 24
 }
 
-const CONFIG_FILE_PATH = path.join(process.cwd(), "calendar-config.json");
+const CONFIG_KEY = "calendar-config";
 
 const DEFAULT_CONFIG: CalendarConfig = {
   startHour: 9,
@@ -55,23 +54,32 @@ const DEFAULT_CONFIG: CalendarConfig = {
   minimumNoticeHours: 24,
 };
 
-export function getCalendarConfig(): CalendarConfig {
+export async function getCalendarConfig(): Promise<CalendarConfig> {
   try {
-    if (fs.existsSync(CONFIG_FILE_PATH)) {
-      const configData = fs.readFileSync(CONFIG_FILE_PATH, "utf-8");
-      return { ...DEFAULT_CONFIG, ...JSON.parse(configData) };
+    // Check if KV is available (has environment variables)
+    if (!process.env.KV_REST_API_URL) {
+      console.log("KV not configured, using default config");
+      return DEFAULT_CONFIG;
+    }
+
+    const config = await kv.get<CalendarConfig>(CONFIG_KEY);
+    if (config) {
+      return { ...DEFAULT_CONFIG, ...config };
     }
   } catch (error) {
-    console.error("Error reading calendar config:", error);
+    console.error("Error reading calendar config from KV:", error);
   }
   return DEFAULT_CONFIG;
 }
 
-export function saveCalendarConfig(config: CalendarConfig): void {
+export async function saveCalendarConfig(config: CalendarConfig): Promise<void> {
   try {
-    fs.writeFileSync(CONFIG_FILE_PATH, JSON.stringify(config, null, 2));
+    if (!process.env.KV_REST_API_URL) {
+      throw new Error("KV not configured");
+    }
+    await kv.set(CONFIG_KEY, config);
   } catch (error) {
-    console.error("Error saving calendar config:", error);
+    console.error("Error saving calendar config to KV:", error);
     throw error;
   }
 }
@@ -126,4 +134,34 @@ export function meetsMinimumNotice(
   const now = new Date();
   const minimumTime = new Date(now.getTime() + config.minimumNoticeHours * 60 * 60 * 1000);
   return slotDateTime >= minimumTime;
+}
+
+// Rate limiting helper
+const RATE_LIMIT_PREFIX = "rate-limit:";
+const RATE_LIMIT_WINDOW = 60 * 60; // 1 hour in seconds
+const MAX_BOOKINGS_PER_HOUR = 5; // Max 5 bookings per IP per hour
+
+export async function checkRateLimit(ip: string): Promise<{ allowed: boolean; remaining: number }> {
+  try {
+    if (!process.env.KV_REST_API_URL) {
+      // No rate limiting without KV
+      return { allowed: true, remaining: MAX_BOOKINGS_PER_HOUR };
+    }
+
+    const key = `${RATE_LIMIT_PREFIX}${ip}`;
+    const current = await kv.get<number>(key) || 0;
+
+    if (current >= MAX_BOOKINGS_PER_HOUR) {
+      return { allowed: false, remaining: 0 };
+    }
+
+    // Increment counter with TTL
+    await kv.set(key, current + 1, { ex: RATE_LIMIT_WINDOW });
+
+    return { allowed: true, remaining: MAX_BOOKINGS_PER_HOUR - current - 1 };
+  } catch (error) {
+    console.error("Error checking rate limit:", error);
+    // Allow on error to not block legitimate users
+    return { allowed: true, remaining: MAX_BOOKINGS_PER_HOUR };
+  }
 }

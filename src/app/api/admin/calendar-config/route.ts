@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const config = getCalendarConfig();
+    const config = await getCalendarConfig();
     return NextResponse.json(config);
   } catch (error) {
     console.error("Error getting calendar config:", error);
@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    saveCalendarConfig(config);
+    await saveCalendarConfig(config);
 
     return NextResponse.json({
       success: true,

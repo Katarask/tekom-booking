@@ -4,6 +4,7 @@ import { createBooking, uploadCvToNotion } from "@/lib/notion";
 import { sendConfirmationEmail, sendCvBackupEmail } from "@/lib/resend";
 import { formatDate, formatTime, createISODateTime } from "@/lib/utils";
 import { BookingFormData } from "@/types";
+import { checkRateLimit } from "@/lib/calendar-config";
 
 // Check if Azure credentials are configured
 const isAzureConfigured = () => {
@@ -17,6 +18,24 @@ const isAzureConfigured = () => {
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting check
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0] ||
+               request.headers.get("x-real-ip") ||
+               "unknown";
+
+    const rateLimit = await checkRateLimit(ip);
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { error: "Zu viele Anfragen. Bitte versuchen Sie es später erneut." },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": "3600",
+            "X-RateLimit-Remaining": "0",
+          }
+        }
+      );
+    }
     // Check content type to determine how to parse the request
     const contentType = request.headers.get("content-type") || "";
 
