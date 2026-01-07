@@ -53,3 +53,36 @@ export function addMinutes(time: string, minutes: number): string {
 export function createISODateTime(date: string, time: string): string {
   return `${date}T${time}:00`;
 }
+
+// Timezone constant for Germany
+export const TIMEZONE = "Europe/Berlin";
+
+// Get current date in Berlin timezone
+export function getBerlinDate(): Date {
+  return new Date(new Date().toLocaleString("en-US", { timeZone: TIMEZONE }));
+}
+
+// Get current time in Berlin timezone as string (HH:MM)
+export function getBerlinTime(): string {
+  const now = getBerlinDate();
+  return `${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}`;
+}
+
+// Check if a datetime is in the past (Berlin timezone)
+export function isInPast(date: string, time: string): boolean {
+  const slotDate = new Date(`${date}T${time}:00`);
+  const berlinNow = getBerlinDate();
+  return slotDate < berlinNow;
+}
+
+// Format date string to Berlin locale
+export function formatDateBerlin(date: string | Date): string {
+  const d = typeof date === "string" ? new Date(date) : date;
+  return d.toLocaleDateString("de-DE", {
+    timeZone: TIMEZONE,
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}

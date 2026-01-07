@@ -99,7 +99,7 @@ export default function RootLayout({
     url: "https://denizleventtulay.de",
     image: `${siteUrl}/og-image.svg`,
     sameAs: [
-      "https://linkedin.com/in/denizleventtulay",
+      "https://www.linkedin.com/in/deniz-levent-tulay-tekom2025/",
       "https://denizleventtulay.de",
     ],
     knowsAbout: [

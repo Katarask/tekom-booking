@@ -124,15 +124,21 @@ export function isBlockedDate(dateString: string, config: CalendarConfig): boole
   return config.blockedDates.includes(dateString);
 }
 
-// Check if a slot meets minimum notice requirement
+// Check if a slot meets minimum notice requirement (Berlin timezone)
 export function meetsMinimumNotice(
   date: string,
   time: string,
   config: CalendarConfig
 ): boolean {
+  // Parse the slot time as Berlin time
   const slotDateTime = new Date(`${date}T${time}:00`);
-  const now = new Date();
-  const minimumTime = new Date(now.getTime() + config.minimumNoticeHours * 60 * 60 * 1000);
+
+  // Get current time in Berlin
+  const berlinNow = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Berlin" }));
+
+  // Add minimum notice hours
+  const minimumTime = new Date(berlinNow.getTime() + config.minimumNoticeHours * 60 * 60 * 1000);
+
   return slotDateTime >= minimumTime;
 }
 

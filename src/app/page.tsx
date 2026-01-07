@@ -154,10 +154,10 @@ export default function Home() {
             <a href="https://denizleventtulay.de" target="_blank" rel="noopener noreferrer" className="hover:text-burgundy transition-colors">
               Portfolio
             </a>
-            <a href="https://linkedin.com/in/denizleventtulay" target="_blank" rel="noopener noreferrer" className="hover:text-burgundy transition-colors">
+            <a href="https://www.linkedin.com/in/deniz-levent-tulay-tekom2025/" target="_blank" rel="noopener noreferrer" className="hover:text-burgundy transition-colors">
               LinkedIn
             </a>
-            <a href="mailto:d.l.tulay@tekom-gmbh.de" className="hover:text-burgundy transition-colors">
+            <a href="https://denizleventtulay.de/kontakt" target="_blank" rel="noopener noreferrer" className="hover:text-burgundy transition-colors">
               Kontakt
             </a>
           </div>
