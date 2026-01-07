@@ -236,13 +236,13 @@ export function BookingForm({
       {/* Available From */}
       <div>
         <label className={labelClass}>
-          Ab wann stehen Sie fuer eine neue Position zur Verfuegung? <span className="text-burgundy">*</span>
+          Ab wann stehen Sie fÃ¼r eine neue Position zur Verfuegung? <span className="text-burgundy">*</span>
         </label>
         <input
           type="text"
-          {...register("availableFrom", { required: "Verfuegbarkeit ist erforderlich" })}
+          {...register("availableFrom", { required: "VerfÃ¼gbarkeit ist erforderlich" })}
           className={cn(inputClass, errors.availableFrom && "border-burgundy")}
-          placeholder="z.B. Sofort, Ab 01.03.2025, 3 Monate Kuendigungsfrist"
+          placeholder="z.B. Sofort, Ab 01.03.2025, 3 Monate KÃ¼ndigungsfrist"
         />
         {errors.availableFrom && (
           <p className={errorClass}>{errors.availableFrom.message}</p>
@@ -272,7 +272,7 @@ export function BookingForm({
           ))}
         </div>
         {selectedRegions.length === 0 && (
-          <p className="mt-2 text-[11px] font-mono text-dark/40">Mindestens eine Region auswaehlen</p>
+          <p className="mt-2 text-[11px] font-mono text-dark/40">Mindestens eine Region auswÃ¤hlen</p>
         )}
       </div>
 
@@ -295,7 +295,7 @@ export function BookingForm({
       {/* Employment Types */}
       <div>
         <label className={labelClass}>
-          Welche Arbeitsverhaeltnisse kaemen fuer Sie in Frage? <span className="text-burgundy">*</span>
+          Welche Arbeitsverhaeltnisse kaemen fÃ¼r Sie in Frage? <span className="text-burgundy">*</span>
         </label>
         <div className="space-y-3">
           {EMPLOYMENT_TYPES.map((type) => (
@@ -520,7 +520,7 @@ export function BookingForm({
       {/* Phone */}
       <div>
         <label className={labelClass}>
-          Telefon fuer SMS-Erinnerung <span className="text-dark/30">(optional)</span>
+          Telefon fÃ¼r SMS-Erinnerung <span className="text-dark/30">(optional)</span>
         </label>
         <input
           type="tel"
@@ -537,7 +537,7 @@ export function BookingForm({
           <a href="/datenschutz" className="text-burgundy hover:underline">
             Datenschutzerklaerung
           </a>{" "}
-          zu. Ihre Daten werden ausschliesslich fuer den Recruiting-Prozess verwendet.
+          zu. Ihre Daten werden ausschliesslich fÃ¼r den Recruiting-Prozess verwendet.
         </p>
       </div>
 
@@ -548,7 +548,7 @@ export function BookingForm({
           onClick={onBack}
           className="flex-1 px-6 py-4 border border-dark/10 text-dark font-mono text-[11px] uppercase tracking-[0.1em] hover:bg-dark/5 transition-all duration-200"
         >
-          Zurueck
+          ZurÃ¼ck
         </button>
         <button
           type="submit"

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     default: "Beratungstermin buchen | Deniz Levent Tulay - Tech Recruiter",
     template: "%s | Deniz Levent Tulay",
   },
-  description: "Buchen Sie jetzt Ihr kostenloses Beratungsgespraech mit Deniz Levent Tulay - Tech Recruiter & Headhunter fuer IT-Fachkraefte in Deutschland. Persoenliche Karriereberatung per Microsoft Teams.",
+  description: "Buchen Sie jetzt Ihr kostenloses BeratungsgesprÃ¤ch mit Deniz Levent Tulay - Tech Recruiter & Headhunter fÃ¼r IT-Fachkraefte in Deutschland. Persoenliche Karriereberatung per Microsoft Teams.",
   keywords: [
     "Tech Recruiter",
     "Headhunter IT",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Deniz Levent Tulay - Tech Recruiter",
     title: "Beratungstermin buchen | Deniz Levent Tulay",
-    description: "Kostenloses Beratungsgespraech mit Tech Recruiter Deniz Levent Tulay. Karriereberatung fuer IT-Fachkraefte - jetzt Termin buchen!",
+    description: "Kostenloses BeratungsgesprÃ¤ch mit Tech Recruiter Deniz Levent Tulay. Karriereberatung fÃ¼r IT-Fachkraefte - jetzt Termin buchen!",
     images: [
       {
         url: "/og-image.png",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Beratungstermin buchen | Deniz Levent Tulay",
-    description: "Kostenloses Beratungsgespraech mit Tech Recruiter - jetzt Termin buchen!",
+    description: "Kostenloses BeratungsgesprÃ¤ch mit Tech Recruiter - jetzt Termin buchen!",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -81,7 +81,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Deniz Levent Tulay - Tech Recruiter",
-    description: "Tech Recruiter & Headhunter fuer IT-Fachkraefte in Deutschland",
+    description: "Tech Recruiter & Headhunter fÃ¼r IT-Fachkraefte in Deutschland",
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     image: `${siteUrl}/og-image.png`,

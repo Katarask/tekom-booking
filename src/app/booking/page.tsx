@@ -29,7 +29,7 @@ export default function BookingPage() {
         );
 
         if (!response.ok) {
-          throw new Error("Fehler beim Laden der verfuegbaren Termine");
+          throw new Error("Fehler beim Laden der verfügbaren Termine");
         }
 
         const data = await response.json();
@@ -66,7 +66,7 @@ export default function BookingPage() {
         {/* Section Label */}
         <div className="mb-8">
           <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-dark/50">
-            [01] Termin waehlen
+            [01] Termin wählen
           </span>
         </div>
 
@@ -90,10 +90,10 @@ export default function BookingPage() {
         {/* Title */}
         <div className="text-center mb-12">
           <h1 className="text-[clamp(28px,4vw,48px)] font-light text-dark mb-4 tracking-tight">
-            Termin auswaehlen
+            Termin auswählen
           </h1>
           <p className="text-dark/60 font-mono text-sm max-w-md mx-auto">
-            Waehlen Sie einen passenden Termin fuer Ihr Beratungsgespraech
+            Wählen Sie einen passenden Termin für Ihr Beratungsgespräch
           </p>
         </div>
 
@@ -139,7 +139,7 @@ export default function BookingPage() {
                 />
               ) : (
                 <div className="text-center py-12 text-dark/40 font-mono text-sm">
-                  Bitte waehlen Sie zuerst ein Datum aus
+                  Bitte wählen Sie zuerst ein Datum aus
                 </div>
               )}
             </div>

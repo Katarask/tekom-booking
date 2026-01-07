@@ -22,16 +22,16 @@ function BookingDetailsContent() {
       <div className="min-h-screen bg-cream flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-[clamp(1.5rem,4vw,2rem)] font-light text-dark mb-3 font-mono">
-            Ungueltiger Link
+            UngÃ¼ltiger Link
           </h1>
           <p className="text-dark/60 font-mono text-sm mb-6">
-            Bitte waehlen Sie zuerst einen Termin aus.
+            Bitte wÃ¤hlen Sie zuerst einen Termin aus.
           </p>
           <button
             onClick={() => router.push("/booking")}
             className="text-burgundy hover:text-burgundy/80 font-mono text-sm tracking-wider transition-colors"
           >
-            Zurueck zur Terminauswahl
+            ZurÃ¼ck zur Terminauswahl
           </button>
         </div>
       </div>
@@ -126,7 +126,7 @@ function BookingDetailsContent() {
               onClick={handleBack}
               className="ml-auto text-[11px] font-mono uppercase tracking-[0.15em] text-burgundy hover:text-burgundy/80 transition-colors"
             >
-              Aendern
+              Ãndern
             </button>
           </div>
         </div>
@@ -140,7 +140,7 @@ function BookingDetailsContent() {
             Ihre Daten
           </h1>
           <p className="text-dark/60 font-mono text-sm max-w-md mx-auto">
-            Bitte fuellen Sie das Formular aus, um den Termin zu bestaetigen
+            Bitte fÃ¼llen Sie das Formular aus, um den Termin zu bestÃ¤tigen
           </p>
         </div>
 

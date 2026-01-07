@@ -157,7 +157,7 @@ function EmbedBookingContent() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-            Zurueck
+            ZurÃ¼ck
           </button>
 
           {/* Selected slot summary */}
@@ -165,7 +165,7 @@ function EmbedBookingContent() {
             className="rounded-lg p-4 mb-6"
             style={{ backgroundColor: `#${primaryColor}15` }}
           >
-            <p className="text-sm text-gray-600">Ausgewaehlter Termin:</p>
+            <p className="text-sm text-gray-600">AusgewÃ¤hlter Termin:</p>
             <p className="font-semibold text-gray-900">
               {formatDate(selectedDate!)} um {formatTime(selectedTime!)}
             </p>
@@ -215,7 +215,7 @@ function EmbedBookingContent() {
             <div className="grid md:grid-cols-2 gap-6">
               {/* Calendar */}
               <div className="bg-white rounded-xl shadow-sm border p-5">
-                <h2 className="text-lg font-semibold mb-4">Datum waehlen</h2>
+                <h2 className="text-lg font-semibold mb-4">Datum wÃ¤hlen</h2>
                 <CalendarView
                   availableSlots={availableSlots}
                   selectedDate={selectedDate}
@@ -228,7 +228,7 @@ function EmbedBookingContent() {
 
               {/* Time Slots */}
               <div className="bg-white rounded-xl shadow-sm border p-5">
-                <h2 className="text-lg font-semibold mb-4">Uhrzeit waehlen</h2>
+                <h2 className="text-lg font-semibold mb-4">Uhrzeit wÃ¤hlen</h2>
                 {selectedDate ? (
                   <TimeSlotPicker
                     times={timesForSelectedDate}
@@ -237,7 +237,7 @@ function EmbedBookingContent() {
                   />
                 ) : (
                   <div className="text-center py-12 text-gray-500">
-                    Bitte waehlen Sie zuerst ein Datum
+                    Bitte wÃ¤hlen Sie zuerst ein Datum
                   </div>
                 )}
               </div>

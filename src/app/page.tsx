@@ -13,12 +13,12 @@ export default function Home() {
             Tech Recruiter & Headhunter
           </p>
           <h1 className="text-[clamp(2rem,6vw,3.5rem)] font-light text-dark mb-6 tracking-tight leading-tight">
-            Kostenloses Beratungsgespraech
+            Kostenloses Beratungsgespräch
             <br />
-            <span className="text-burgundy">fuer IT-Fachkraefte</span>
+            <span className="text-burgundy">für IT-Fachkräfte</span>
           </h1>
           <p className="text-dark/60 font-mono text-sm md:text-base max-w-2xl mx-auto mb-10 leading-relaxed">
-            Buchen Sie jetzt Ihr persoenliches 30-minuetiges Gespraech mit Deniz Levent Tulay.
+            Buchen Sie jetzt Ihr persönliches 30-minütiges Gespräch mit Deniz Levent Tulay.
             Erhalten Sie individuelle Karriereberatung und Zugang zu exklusiven IT-Stellenangeboten
             in ganz Deutschland.
           </p>
@@ -39,7 +39,7 @@ export default function Home() {
             Ihre Vorteile
           </p>
           <h2 className="text-[clamp(1.5rem,4vw,2rem)] font-light text-dark">
-            Warum ein Beratungsgespraech?
+            Warum ein Beratungsgespräch?
           </h2>
         </div>
 
@@ -52,7 +52,7 @@ export default function Home() {
             </div>
             <h3 className="font-mono text-dark text-sm mb-2">Exklusive Stellen</h3>
             <p className="text-dark/60 font-mono text-xs leading-relaxed">
-              Zugang zu nicht oeffentlich ausgeschriebenen IT-Positionen bei Top-Arbeitgebern.
+              Zugang zu nicht öffentlich ausgeschriebenen IT-Positionen bei Top-Arbeitgebern.
             </p>
           </article>
 
@@ -64,7 +64,7 @@ export default function Home() {
             </div>
             <h3 className="font-mono text-dark text-sm mb-2">Vertraulich</h3>
             <p className="text-dark/60 font-mono text-xs leading-relaxed">
-              Diskrete Beratung - Ihre Jobsuche bleibt vollstaendig vertraulich.
+              Diskrete Beratung - Ihre Jobsuche bleibt vollständig vertraulich.
             </p>
           </article>
 
@@ -76,7 +76,7 @@ export default function Home() {
             </div>
             <h3 className="font-mono text-dark text-sm mb-2">100% Kostenlos</h3>
             <p className="text-dark/60 font-mono text-xs leading-relaxed">
-              Die Beratung ist fuer Sie als Kandidat komplett kostenlos und unverbindlich.
+              Die Beratung ist für Sie als Kandidat komplett kostenlos und unverbindlich.
             </p>
           </article>
         </div>
@@ -100,7 +100,7 @@ export default function Home() {
             </div>
             <h3 className="font-mono text-dark text-sm mb-2">Termin buchen</h3>
             <p className="text-dark/60 font-mono text-xs">
-              Waehlen Sie einen passenden Zeitslot fuer Ihr Online-Gespraech.
+              Wählen Sie einen passenden Zeitslot für Ihr Online-Gespräch.
             </p>
           </div>
 
@@ -108,9 +108,9 @@ export default function Home() {
             <div className="w-12 h-12 bg-burgundy text-cream rounded-full flex items-center justify-center mx-auto mb-4 font-mono text-sm">
               02
             </div>
-            <h3 className="font-mono text-dark text-sm mb-2">Beratungsgespraech</h3>
+            <h3 className="font-mono text-dark text-sm mb-2">Beratungsgespräch</h3>
             <p className="text-dark/60 font-mono text-xs">
-              30 Minuten persoenliche Karriereberatung per Microsoft Teams.
+              30 Minuten persönliche Karriereberatung per Microsoft Teams.
             </p>
           </div>
 
@@ -120,7 +120,7 @@ export default function Home() {
             </div>
             <h3 className="font-mono text-dark text-sm mb-2">Passende Stellen</h3>
             <p className="text-dark/60 font-mono text-xs">
-              Erhalten Sie massgeschneiderte Jobangebote basierend auf Ihrem Profil.
+              Erhalten Sie maßgeschneiderte Jobangebote basierend auf Ihrem Profil.
             </p>
           </div>
         </div>
@@ -130,11 +130,11 @@ export default function Home() {
       <section className="container mx-auto px-4 py-16 max-w-4xl">
         <div className="bg-burgundy/5 border border-burgundy/20 rounded-lg p-8 md:p-12 text-center">
           <h2 className="text-[clamp(1.25rem,3vw,1.75rem)] font-light text-dark mb-4">
-            Bereit fuer den naechsten Karriereschritt?
+            Bereit für den nächsten Karriereschritt?
           </h2>
           <p className="text-dark/60 font-mono text-sm mb-8 max-w-xl mx-auto">
             Lassen Sie uns gemeinsam Ihre Karriereziele besprechen und die passenden
-            Moeglichkeiten fuer Sie finden.
+            Möglichkeiten für Sie finden.
           </p>
           <Link
             href="/booking"

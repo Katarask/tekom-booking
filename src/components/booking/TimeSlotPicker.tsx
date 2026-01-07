@@ -16,7 +16,7 @@ export function TimeSlotPicker({
   if (times.length === 0) {
     return (
       <div className="text-center py-8 text-dark/40 font-mono text-sm">
-        Keine verfuegbaren Zeiten fuer dieses Datum
+        Keine verfÃ¼gbaren Zeiten fÃ¼r dieses Datum
       </div>
     );
   }

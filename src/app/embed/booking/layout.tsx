@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Termin buchen | Deniz Levent Tulay",
-  description: "Buchen Sie Ihren persoenlichen Beratungstermin",
+  description: "Buchen Sie Ihren persÃ¶nlichen Beratungstermin",
 };
 
 export default function EmbedLayout({

@@ -61,14 +61,14 @@ export default function CancelBookingPage() {
               </svg>
             </div>
             <p className="text-[11px] font-mono uppercase tracking-[0.15em] text-dark/40 mb-3">
-              Stornierung bestaetigt
+              Stornierung bestÃ¤tigt
             </p>
             <h1 className="text-[clamp(1.5rem,4vw,2rem)] font-light text-dark mb-3 font-mono">
               Termin abgesagt
             </h1>
             <p className="text-dark/60 font-mono text-sm mb-8">
               Ihr Termin wurde erfolgreich abgesagt. Sie erhalten eine
-              Bestaetigung per E-Mail.
+              BestÃ¤tigung per E-Mail.
             </p>
             <button
               onClick={() => router.push("/booking")}
@@ -110,7 +110,7 @@ export default function CancelBookingPage() {
               Termin absagen
             </h1>
             <p className="text-dark/60 font-mono text-sm">
-              Schade, dass Sie den Termin nicht wahrnehmen koennen. Moechten Sie
+              Schade, dass Sie den Termin nicht wahrnehmen kÃ¶nnen. MÃ¶chten Sie
               Ihren Termin wirklich absagen?
             </p>
           </div>
@@ -123,7 +123,7 @@ export default function CancelBookingPage() {
 
           <div className="mb-6">
             <label className="block text-[11px] font-mono uppercase tracking-[0.15em] text-dark/60 mb-2">
-              Grund fuer die Absage{" "}
+              Grund fÃ¼r die Absage{" "}
               <span className="text-dark/40">(optional)</span>
             </label>
             <textarea
@@ -141,7 +141,7 @@ export default function CancelBookingPage() {
               onClick={() => router.back()}
               className="flex-1 px-6 py-3 border border-dark/20 text-dark rounded font-mono text-sm tracking-wider hover:bg-sand/50 transition-colors"
             >
-              Zurueck
+              ZurÃ¼ck
             </button>
             <button
               type="button"

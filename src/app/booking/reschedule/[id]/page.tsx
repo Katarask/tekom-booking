@@ -34,7 +34,7 @@ export default function RescheduleBookingPage() {
       const data = await response.json();
       setSlots(data.slots);
     } catch {
-      setError("Verfuegbare Termine konnten nicht geladen werden");
+      setError("VerfÃ¼gbare Termine konnten nicht geladen werden");
     } finally {
       setIsLoading(false);
     }
@@ -107,7 +107,7 @@ export default function RescheduleBookingPage() {
               <p className="font-mono text-dark/60 text-sm">{formatTime(selectedTime!)} Uhr</p>
             </div>
             <p className="text-dark/60 font-mono text-sm mb-8">
-              Sie erhalten eine Bestaetigung per E-Mail mit dem neuen
+              Sie erhalten eine BestÃ¤tigung per E-Mail mit dem neuen
               Teams-Meeting-Link.
             </p>
             <button
@@ -146,13 +146,13 @@ export default function RescheduleBookingPage() {
               </svg>
             </div>
             <p className="text-[11px] font-mono uppercase tracking-[0.15em] text-dark/40 mb-3">
-              Neuen Termin waehlen
+              Neuen Termin wÃ¤hlen
             </p>
             <h1 className="text-[clamp(1.5rem,4vw,2rem)] font-light text-dark mb-3 font-mono">
               Termin verschieben
             </h1>
             <p className="text-dark/60 font-mono text-sm">
-              Waehlen Sie einen neuen Termin aus den verfuegbaren Zeitfenstern
+              WÃ¤hlen Sie einen neuen Termin aus den verfÃ¼gbaren Zeitfenstern
             </p>
           </div>
 
@@ -165,14 +165,14 @@ export default function RescheduleBookingPage() {
           {isLoading ? (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-burgundy mx-auto"></div>
-              <p className="mt-4 text-dark/60 font-mono text-sm">Lade verfuegbare Termine...</p>
+              <p className="mt-4 text-dark/60 font-mono text-sm">Lade verfÃ¼gbare Termine...</p>
             </div>
           ) : (
             <>
               {/* Date Selection */}
               <div className="mb-8">
                 <p className="text-[11px] font-mono uppercase tracking-[0.15em] text-dark/60 mb-4">
-                  Datum waehlen
+                  Datum wÃ¤hlen
                 </p>
                 <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2">
                   {slots.map((slot) => (
@@ -210,7 +210,7 @@ export default function RescheduleBookingPage() {
               {selectedDate && selectedSlot && (
                 <div className="mb-8">
                   <p className="text-[11px] font-mono uppercase tracking-[0.15em] text-dark/60 mb-4">
-                    Uhrzeit waehlen
+                    Uhrzeit wÃ¤hlen
                   </p>
                   <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
                     {selectedSlot.times.map((time) => (

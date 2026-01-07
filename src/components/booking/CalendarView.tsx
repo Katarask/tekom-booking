@@ -161,11 +161,11 @@ export function CalendarView({
       <div className="mt-6 flex items-center gap-6 text-[11px] font-mono text-dark/50">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded bg-burgundy/10" />
-          <span>Verfuegbar</span>
+          <span>VerfÃ¼gbar</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded bg-burgundy" />
-          <span>Ausgewaehlt</span>
+          <span>AusgewÃ¤hlt</span>
         </div>
       </div>
     </div>

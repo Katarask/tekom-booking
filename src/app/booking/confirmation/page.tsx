@@ -77,13 +77,13 @@ function ConfirmationContent() {
           </div>
 
           <p className="text-[11px] font-mono uppercase tracking-[0.15em] text-dark/40 mb-3">
-            Buchung bestaetigt
+            Buchung bestÃ¤tigt
           </p>
           <h1 className="text-[clamp(1.75rem,5vw,2.5rem)] font-light text-dark mb-3 font-mono">
             Termin gebucht!
           </h1>
           <p className="text-dark/60 font-mono text-sm mb-10">
-            Eine Bestaetigung wurde an Ihre E-Mail-Adresse gesendet.
+            Eine BestÃ¤tigung wurde an Ihre E-Mail-Adresse gesendet.
           </p>
 
           {/* Details */}
@@ -164,7 +164,7 @@ function ConfirmationContent() {
                 rel="noopener noreferrer"
                 className="px-6 py-3 bg-burgundy text-cream rounded font-mono text-sm tracking-wider hover:bg-burgundy/90 transition-colors"
               >
-                Meeting-Link oeffnen
+                Meeting-Link Ã¶ffnen
               </a>
             )}
             <button
@@ -175,7 +175,7 @@ function ConfirmationContent() {
               }}
               className="px-6 py-3 border border-dark/20 text-dark rounded font-mono text-sm tracking-wider hover:bg-sand/50 transition-colors"
             >
-              Zum Kalender hinzufuegen
+              Zum Kalender hinzufÃ¼gen
             </button>
           </div>
         </div>
