@@ -2,6 +2,12 @@
 
 import { useState, useEffect } from "react";
 
+interface BlockedPeriod {
+  startDate: string;
+  endDate: string;
+  label?: string;
+}
+
 interface CalendarConfig {
   startHour: number;
   endHour: number;
@@ -15,6 +21,7 @@ interface CalendarConfig {
     endMinute: number;
   }[];
   blockedDates: string[];
+  blockedPeriods?: BlockedPeriod[];
   advanceBookingDays: number;
   minimumNoticeHours: number;
 }
@@ -43,6 +50,11 @@ export default function AdminPage() {
   } | null>(null);
 
   const [newBlockedDate, setNewBlockedDate] = useState("");
+
+  // State for blocked periods (date ranges)
+  const [newPeriodStart, setNewPeriodStart] = useState("");
+  const [newPeriodEnd, setNewPeriodEnd] = useState("");
+  const [newPeriodLabel, setNewPeriodLabel] = useState("");
 
   // Load config after authentication
   useEffect(() => {
@@ -170,6 +182,38 @@ export default function AdminPage() {
     setConfig({
       ...config,
       blockedDates: config.blockedDates.filter((d) => d !== date),
+    });
+  };
+
+  // Blocked periods (date ranges) functions
+  const addBlockedPeriod = () => {
+    if (!config || !newPeriodStart || !newPeriodEnd) return;
+    if (newPeriodStart > newPeriodEnd) {
+      alert("Startdatum muss vor Enddatum liegen");
+      return;
+    }
+    const newPeriod: BlockedPeriod = {
+      startDate: newPeriodStart,
+      endDate: newPeriodEnd,
+      label: newPeriodLabel || undefined,
+    };
+    const existingPeriods = config.blockedPeriods || [];
+    setConfig({
+      ...config,
+      blockedPeriods: [...existingPeriods, newPeriod].sort((a, b) =>
+        a.startDate.localeCompare(b.startDate)
+      ),
+    });
+    setNewPeriodStart("");
+    setNewPeriodEnd("");
+    setNewPeriodLabel("");
+  };
+
+  const removeBlockedPeriod = (index: number) => {
+    if (!config || !config.blockedPeriods) return;
+    setConfig({
+      ...config,
+      blockedPeriods: config.blockedPeriods.filter((_, i) => i !== index),
     });
   };
 
@@ -564,10 +608,107 @@ export default function AdminPage() {
             )}
           </div>
 
-          {/* Blocked Dates */}
+          {/* Blocked Periods (Date Ranges) */}
           <div className="bg-dark-alt border border-cream/10 rounded p-6">
             <p className="text-[11px] font-mono uppercase tracking-[0.15em] text-cream/40 mb-4">
-              Geblockte Tage
+              Geblockte Zeiträume (z.B. Urlaub)
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-4">
+              <div>
+                <label className="block text-[10px] font-mono uppercase tracking-[0.15em] text-cream/50 mb-1">
+                  Von
+                </label>
+                <input
+                  type="date"
+                  value={newPeriodStart}
+                  onChange={(e) => setNewPeriodStart(e.target.value)}
+                  className="w-full px-3 py-2 bg-dark border border-cream/20 rounded font-mono text-sm text-cream focus:outline-none focus:border-burgundy/50"
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] font-mono uppercase tracking-[0.15em] text-cream/50 mb-1">
+                  Bis
+                </label>
+                <input
+                  type="date"
+                  value={newPeriodEnd}
+                  onChange={(e) => setNewPeriodEnd(e.target.value)}
+                  className="w-full px-3 py-2 bg-dark border border-cream/20 rounded font-mono text-sm text-cream focus:outline-none focus:border-burgundy/50"
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] font-mono uppercase tracking-[0.15em] text-cream/50 mb-1">
+                  Bezeichnung (optional)
+                </label>
+                <input
+                  type="text"
+                  value={newPeriodLabel}
+                  onChange={(e) => setNewPeriodLabel(e.target.value)}
+                  placeholder="z.B. Urlaub"
+                  className="w-full px-3 py-2 bg-dark border border-cream/20 rounded font-mono text-sm text-cream focus:outline-none focus:border-burgundy/50 placeholder:text-cream/30"
+                />
+              </div>
+              <div className="flex items-end">
+                <button
+                  onClick={addBlockedPeriod}
+                  disabled={!newPeriodStart || !newPeriodEnd}
+                  className="w-full px-4 py-2 bg-burgundy text-cream rounded font-mono text-sm tracking-wider hover:bg-burgundy/90 transition-colors disabled:opacity-50"
+                >
+                  Hinzufuegen
+                </button>
+              </div>
+            </div>
+
+            {(!config.blockedPeriods || config.blockedPeriods.length === 0) ? (
+              <p className="text-cream/40 font-mono text-sm">
+                Keine Zeiträume konfiguriert
+              </p>
+            ) : (
+              <div className="space-y-2">
+                {config.blockedPeriods.map((period, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between gap-4 p-3 bg-dark rounded border border-cream/10"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm font-mono text-cream">
+                        {new Date(period.startDate).toLocaleDateString("de-DE", {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                        })}
+                      </span>
+                      <span className="text-cream/40 font-mono text-sm">bis</span>
+                      <span className="text-sm font-mono text-cream">
+                        {new Date(period.endDate).toLocaleDateString("de-DE", {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                        })}
+                      </span>
+                      {period.label && (
+                        <span className="px-2 py-0.5 bg-burgundy/20 border border-burgundy/30 rounded text-xs font-mono text-cream/80">
+                          {period.label}
+                        </span>
+                      )}
+                    </div>
+                    <button
+                      onClick={() => removeBlockedPeriod(index)}
+                      className="text-burgundy hover:text-burgundy/80 font-mono text-sm transition-colors"
+                    >
+                      Entfernen
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Blocked Dates (Single Days) */}
+          <div className="bg-dark-alt border border-cream/10 rounded p-6">
+            <p className="text-[11px] font-mono uppercase tracking-[0.15em] text-cream/40 mb-4">
+              Einzelne geblockte Tage (z.B. Feiertage)
             </p>
 
             <div className="flex gap-2 mb-4">
@@ -588,7 +729,7 @@ export default function AdminPage() {
 
             {config.blockedDates.length === 0 ? (
               <p className="text-cream/40 font-mono text-sm">
-                Keine geblockten Tage konfiguriert
+                Keine einzelnen Tage konfiguriert
               </p>
             ) : (
               <div className="flex flex-wrap gap-2">

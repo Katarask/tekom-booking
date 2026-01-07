@@ -7,8 +7,8 @@ import {
   Text,
   Button,
   Hr,
-  Link,
   Preview,
+  Font,
 } from "@react-email/components";
 
 interface BookingCancellationProps {
@@ -19,40 +19,52 @@ interface BookingCancellationProps {
 }
 
 export default function BookingCancellation({
-  name = "Max Mustermann",
+  name = "Max",
   date = "Freitag, 10. Januar 2025",
   time = "10:00 Uhr",
-  rebookLink = "https://termine.tekom.de/booking",
+  rebookLink = "https://termine.denizleventtulay.de/booking",
 }: BookingCancellationProps) {
   return (
     <Html>
-      <Head />
+      <Head>
+        <Font
+          fontFamily="JetBrains Mono"
+          fallbackFontFamily="monospace"
+          webFont={{
+            url: "https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2",
+            format: "woff2",
+          }}
+        />
+      </Head>
       <Preview>Ihr Termin wurde abgesagt</Preview>
       <Body style={main}>
         <Container style={container}>
-          {/* Logo */}
-          <Section style={logoSection}>
-            <Text style={logoText}>TEKOM</Text>
+          {/* Header */}
+          <Section style={header}>
+            <Text style={logo}>
+              <span style={logoDot}>●</span> ~DENIZ
+            </Text>
           </Section>
 
-          {/* Header */}
-          <Section style={headerSection}>
+          {/* Icon */}
+          <Section style={iconSection}>
             <Text style={icon}>✕</Text>
-            <Text style={heading}>Termin abgesagt</Text>
           </Section>
+
+          <Text style={subheading}>TERMIN ABGESAGT</Text>
 
           {/* Greeting */}
           <Text style={paragraph}>Hallo {name},</Text>
           <Text style={paragraph}>
-            Ihr folgender Termin bei TEKOM wurde abgesagt:
+            Ihr folgender Termin wurde abgesagt:
           </Text>
 
           {/* Details Box */}
           <Section style={detailsBox}>
             <Text style={detailsText}>
-              📅 {date}
+              <span style={strikethrough}>📅 {date}</span>
               <br />
-              🕐 {time}
+              <span style={strikethrough}>🕐 {time}</span>
             </Text>
           </Section>
 
@@ -64,24 +76,28 @@ export default function BookingCancellation({
           {/* Rebook Button */}
           <Section style={buttonSection}>
             <Button style={primaryButton} href={rebookLink}>
-              Neuen Termin buchen
+              Neuen Termin buchen →
             </Button>
           </Section>
 
           <Hr style={hr} />
 
+          {/* Signature */}
+          <Section style={signatureSection}>
+            <Text style={signatureText}>
+              Viele Grüße,
+              <br />
+              <strong>Deniz Levent Tulay</strong>
+            </Text>
+            <Text style={signatureRole}>
+              Tech Recruiter & Headhunter
+            </Text>
+          </Section>
+
           {/* Footer */}
           <Section style={footer}>
             <Text style={footerText}>
-              TEKOM Industrielle Systemtechnik GmbH
-              <br />
-              Ihr Partner für Recruiting in der High-Tech-Industrie
-            </Text>
-            <Text style={footerTextSmall}>
-              Bei Fragen kontaktieren Sie uns unter{" "}
-              <Link href="mailto:recruiting@tekom.de" style={footerLink}>
-                recruiting@tekom.de
-              </Link>
+              termine.denizleventtulay.de
             </Text>
           </Section>
         </Container>
@@ -90,11 +106,18 @@ export default function BookingCancellation({
   );
 }
 
+// Brand Colors
+const colors = {
+  cream: "#EFEDE5",
+  sand: "#DBD6CC",
+  burgundy: "#652126",
+  dark: "#0a0a0a",
+};
+
 // Styles
 const main = {
-  backgroundColor: "#f6f9fc",
-  fontFamily:
-    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+  backgroundColor: colors.cream,
+  fontFamily: '"JetBrains Mono", monospace',
 };
 
 const container = {
@@ -103,57 +126,71 @@ const container = {
   maxWidth: "560px",
 };
 
-const logoSection = {
-  textAlign: "center" as const,
+const header = {
+  backgroundColor: colors.dark,
+  padding: "16px 24px",
   marginBottom: "30px",
 };
 
-const logoText = {
-  fontSize: "28px",
-  fontWeight: "bold",
-  color: "#0066cc",
+const logo = {
+  fontSize: "14px",
+  fontWeight: "400",
+  color: colors.cream,
   margin: "0",
+  letterSpacing: "0.1em",
 };
 
-const headerSection = {
+const logoDot = {
+  color: colors.burgundy,
+  marginRight: "8px",
+};
+
+const iconSection = {
   textAlign: "center" as const,
-  marginBottom: "30px",
+  marginBottom: "20px",
 };
 
 const icon = {
-  fontSize: "40px",
-  color: "#dc2626",
-  margin: "0 0 10px 0",
-};
-
-const heading = {
-  fontSize: "22px",
-  fontWeight: "bold",
-  color: "#1a1a1a",
+  fontSize: "32px",
+  color: colors.burgundy,
   margin: "0",
 };
 
+const subheading = {
+  fontSize: "11px",
+  fontWeight: "600",
+  color: colors.dark,
+  margin: "0 0 20px 0",
+  letterSpacing: "0.15em",
+  textAlign: "center" as const,
+  opacity: 0.5,
+};
+
 const paragraph = {
-  fontSize: "16px",
-  color: "#4a4a4a",
+  fontSize: "14px",
+  color: colors.dark,
   lineHeight: "1.6",
   margin: "0 0 15px 0",
 };
 
 const detailsBox = {
-  backgroundColor: "#fef2f2",
+  backgroundColor: `${colors.burgundy}10`,
   padding: "24px",
-  borderRadius: "8px",
-  border: "1px solid #fecaca",
+  borderRadius: "4px",
+  border: `1px solid ${colors.burgundy}30`,
   margin: "25px 0",
 };
 
 const detailsText = {
-  fontSize: "16px",
-  color: "#1a1a1a",
+  fontSize: "14px",
+  color: colors.dark,
   lineHeight: "1.8",
   margin: "0",
+};
+
+const strikethrough = {
   textDecoration: "line-through",
+  opacity: 0.6,
 };
 
 const buttonSection = {
@@ -162,38 +199,51 @@ const buttonSection = {
 };
 
 const primaryButton = {
-  backgroundColor: "#0066cc",
-  color: "#ffffff",
+  backgroundColor: colors.burgundy,
+  color: colors.cream,
   padding: "14px 28px",
-  borderRadius: "6px",
+  borderRadius: "4px",
   textDecoration: "none",
-  fontSize: "16px",
+  fontSize: "11px",
   fontWeight: "600",
+  letterSpacing: "0.1em",
+  textTransform: "uppercase" as const,
 };
 
 const hr = {
-  borderTop: "1px solid #e0e0e0",
+  borderTop: `1px solid ${colors.dark}15`,
   margin: "30px 0",
+};
+
+const signatureSection = {
+  marginBottom: "30px",
+};
+
+const signatureText = {
+  fontSize: "14px",
+  color: colors.dark,
+  lineHeight: "1.6",
+  margin: "0 0 4px 0",
+};
+
+const signatureRole = {
+  fontSize: "11px",
+  color: colors.dark,
+  opacity: 0.5,
+  letterSpacing: "0.1em",
+  margin: "0",
 };
 
 const footer = {
   textAlign: "center" as const,
+  borderTop: `1px solid ${colors.dark}10`,
+  paddingTop: "20px",
 };
 
 const footerText = {
-  fontSize: "14px",
-  color: "#666666",
-  lineHeight: "1.5",
-  margin: "0 0 10px 0",
-};
-
-const footerTextSmall = {
-  fontSize: "12px",
-  color: "#999999",
+  fontSize: "11px",
+  color: colors.dark,
+  opacity: 0.4,
+  letterSpacing: "0.1em",
   margin: "0",
-};
-
-const footerLink = {
-  color: "#0066cc",
-  textDecoration: "none",
 };

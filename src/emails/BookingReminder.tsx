@@ -9,6 +9,7 @@ import {
   Hr,
   Link,
   Preview,
+  Font,
 } from "@react-email/components";
 
 interface BookingReminderProps {
@@ -16,7 +17,7 @@ interface BookingReminderProps {
   date: string;
   time: string;
   meetingLink: string;
-  hoursUntil: number;
+  hoursUntil?: number;
 }
 
 export default function BookingReminder({
@@ -24,24 +25,35 @@ export default function BookingReminder({
   date = "Freitag, 10. Januar 2025",
   time = "10:00 Uhr",
   meetingLink = "https://teams.microsoft.com/meet/...",
-  hoursUntil = 1,
 }: BookingReminderProps) {
   return (
     <Html>
-      <Head />
+      <Head>
+        <Font
+          fontFamily="JetBrains Mono"
+          fallbackFontFamily="monospace"
+          webFont={{
+            url: "https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2",
+            format: "woff2",
+          }}
+        />
+      </Head>
       <Preview>Erinnerung: Unser Gespräch beginnt in etwa einer Stunde</Preview>
       <Body style={main}>
         <Container style={container}>
-          {/* Logo */}
-          <Section style={logoSection}>
-            <Text style={logoText}>TEKOM</Text>
+          {/* Header */}
+          <Section style={header}>
+            <Text style={logo}>
+              <span style={logoDot}>●</span> ~DENIZ
+            </Text>
           </Section>
 
-          {/* Header */}
-          <Section style={headerSection}>
-            <Text style={bellIcon}>🔔</Text>
-            <Text style={heading}>Gleich geht's los!</Text>
+          {/* Icon */}
+          <Section style={iconSection}>
+            <Text style={icon}>🔔</Text>
           </Section>
+
+          <Text style={subheading}>GLEICH GEHT&apos;S LOS!</Text>
 
           {/* Greeting */}
           <Text style={paragraph}>Hallo {name},</Text>
@@ -52,7 +64,7 @@ export default function BookingReminder({
 
           {/* Details Box */}
           <Section style={detailsBox}>
-            <Text style={detailsHeading}>Termindetails</Text>
+            <Text style={detailsHeading}>TERMINDETAILS</Text>
             <Text style={detailsText}>
               📅 {date}
               <br />
@@ -65,13 +77,13 @@ export default function BookingReminder({
           {/* Join Button */}
           <Section style={buttonSection}>
             <Button style={primaryButton} href={meetingLink}>
-              Am Meeting teilnehmen
+              Am Meeting teilnehmen →
             </Button>
           </Section>
 
           {/* Tips */}
           <Section style={tipsBox}>
-            <Text style={tipsHeading}>Kurze Checkliste:</Text>
+            <Text style={tipsHeading}>KURZE CHECKLISTE</Text>
             <Text style={tipsText}>
               ✓ Stabile Internetverbindung
               <br />
@@ -86,35 +98,32 @@ export default function BookingReminder({
           <Hr style={hr} />
 
           {/* Signature */}
-          <Text style={paragraph}>
-            Bis gleich!
-          </Text>
+          <Text style={paragraph}>Bis gleich!</Text>
 
           <Section style={signatureSection}>
             <Text style={signatureText}>
               <strong>Deniz Levent Tulay</strong>
-              <br />
-              <span style={signatureRole}>Vermittlung innovativer Köpfe in Defense | IT | Robotik | Aviation | Aerospace</span>
+            </Text>
+            <Text style={signatureRole}>
+              Tech Recruiter & Headhunter
             </Text>
           </Section>
 
           <Section style={companyInfo}>
             <Text style={companyText}>
-              TEKOM INDUSTRIELLE SYSTEMTECHNIK GMBH
-              <br />
-              Westenriederstraße 49
-              <br />
-              80331 München
-            </Text>
-            <Text style={contactText}>
               📱 0172 293 5160
-              <br />
-              ☎️ 089 290 33 815
               <br />
               ✉️{" "}
               <Link href="mailto:d.l.tulay@tekom-gmbh.de" style={contactLink}>
                 d.l.tulay@tekom-gmbh.de
               </Link>
+            </Text>
+          </Section>
+
+          {/* Footer */}
+          <Section style={footer}>
+            <Text style={footerText}>
+              termine.denizleventtulay.de
             </Text>
           </Section>
         </Container>
@@ -123,11 +132,18 @@ export default function BookingReminder({
   );
 }
 
+// Brand Colors
+const colors = {
+  cream: "#EFEDE5",
+  sand: "#DBD6CC",
+  burgundy: "#652126",
+  dark: "#0a0a0a",
+};
+
 // Styles
 const main = {
-  backgroundColor: "#f6f9fc",
-  fontFamily:
-    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+  backgroundColor: colors.cream,
+  fontFamily: '"JetBrains Mono", monospace',
 };
 
 const container = {
@@ -136,62 +152,72 @@ const container = {
   maxWidth: "560px",
 };
 
-const logoSection = {
-  textAlign: "center" as const,
+const header = {
+  backgroundColor: colors.dark,
+  padding: "16px 24px",
   marginBottom: "30px",
 };
 
-const logoText = {
-  fontSize: "28px",
-  fontWeight: "bold",
-  color: "#0066cc",
+const logo = {
+  fontSize: "14px",
+  fontWeight: "400",
+  color: colors.cream,
   margin: "0",
+  letterSpacing: "0.1em",
 };
 
-const headerSection = {
+const logoDot = {
+  color: colors.burgundy,
+  marginRight: "8px",
+};
+
+const iconSection = {
   textAlign: "center" as const,
-  marginBottom: "30px",
+  marginBottom: "20px",
 };
 
-const bellIcon = {
-  fontSize: "40px",
-  margin: "0 0 10px 0",
-};
-
-const heading = {
-  fontSize: "22px",
-  fontWeight: "bold",
-  color: "#1a1a1a",
+const icon = {
+  fontSize: "32px",
   margin: "0",
+};
+
+const subheading = {
+  fontSize: "11px",
+  fontWeight: "600",
+  color: colors.dark,
+  margin: "0 0 20px 0",
+  letterSpacing: "0.15em",
+  textAlign: "center" as const,
+  opacity: 0.5,
 };
 
 const paragraph = {
-  fontSize: "16px",
-  color: "#4a4a4a",
+  fontSize: "14px",
+  color: colors.dark,
   lineHeight: "1.6",
   margin: "0 0 15px 0",
 };
 
 const detailsBox = {
-  backgroundColor: "#ffffff",
+  backgroundColor: colors.sand,
   padding: "24px",
-  borderRadius: "8px",
-  border: "1px solid #e0e0e0",
+  borderRadius: "4px",
+  border: `1px solid ${colors.dark}10`,
   margin: "25px 0",
 };
 
 const detailsHeading = {
-  fontSize: "14px",
+  fontSize: "11px",
   fontWeight: "600",
-  color: "#666666",
-  textTransform: "uppercase" as const,
-  letterSpacing: "0.5px",
+  color: colors.dark,
+  letterSpacing: "0.15em",
   margin: "0 0 12px 0",
+  opacity: 0.5,
 };
 
 const detailsText = {
-  fontSize: "16px",
-  color: "#1a1a1a",
+  fontSize: "14px",
+  color: colors.dark,
   lineHeight: "1.8",
   margin: "0",
 };
@@ -202,76 +228,93 @@ const buttonSection = {
 };
 
 const primaryButton = {
-  backgroundColor: "#0066cc",
-  color: "#ffffff",
+  backgroundColor: colors.burgundy,
+  color: colors.cream,
   padding: "14px 28px",
-  borderRadius: "6px",
+  borderRadius: "4px",
   textDecoration: "none",
-  fontSize: "16px",
+  fontSize: "11px",
   fontWeight: "600",
+  letterSpacing: "0.1em",
+  textTransform: "uppercase" as const,
 };
 
 const tipsBox = {
-  backgroundColor: "#f0f7ff",
+  backgroundColor: `${colors.burgundy}08`,
   padding: "20px",
-  borderRadius: "8px",
+  borderRadius: "4px",
+  border: `1px solid ${colors.burgundy}15`,
   margin: "25px 0",
 };
 
 const tipsHeading = {
-  fontSize: "14px",
+  fontSize: "11px",
   fontWeight: "600",
-  color: "#0066cc",
-  margin: "0 0 10px 0",
+  color: colors.burgundy,
+  letterSpacing: "0.15em",
+  margin: "0 0 12px 0",
 };
 
 const tipsText = {
-  fontSize: "14px",
-  color: "#4a4a4a",
+  fontSize: "13px",
+  color: colors.dark,
   lineHeight: "1.8",
   margin: "0",
+  opacity: 0.8,
 };
 
 const hr = {
-  borderTop: "1px solid #e0e0e0",
+  borderTop: `1px solid ${colors.dark}15`,
   margin: "30px 0",
 };
 
 const signatureSection = {
-  marginBottom: "20px",
+  marginBottom: "10px",
 };
 
 const signatureText = {
   fontSize: "14px",
-  color: "#4a4a4a",
+  color: colors.dark,
   lineHeight: "1.6",
-  margin: "0",
+  margin: "0 0 4px 0",
 };
 
 const signatureRole = {
-  fontSize: "12px",
-  color: "#666666",
+  fontSize: "11px",
+  color: colors.dark,
+  opacity: 0.5,
+  letterSpacing: "0.1em",
+  margin: "0",
 };
 
 const companyInfo = {
-  marginTop: "20px",
+  marginTop: "15px",
+  marginBottom: "30px",
 };
 
 const companyText = {
   fontSize: "12px",
-  color: "#666666",
-  lineHeight: "1.5",
-  margin: "0 0 10px 0",
-};
-
-const contactText = {
-  fontSize: "12px",
-  color: "#666666",
+  color: colors.dark,
   lineHeight: "1.8",
   margin: "0",
+  opacity: 0.6,
 };
 
 const contactLink = {
-  color: "#0066cc",
+  color: colors.burgundy,
   textDecoration: "none",
+};
+
+const footer = {
+  textAlign: "center" as const,
+  borderTop: `1px solid ${colors.dark}10`,
+  paddingTop: "20px",
+};
+
+const footerText = {
+  fontSize: "11px",
+  color: colors.dark,
+  opacity: 0.4,
+  letterSpacing: "0.1em",
+  margin: "0",
 };

@@ -23,8 +23,15 @@ export interface CalendarConfig {
     endMinute: number;
   }[];
 
-  // Blocked dates (holidays, vacation)
+  // Blocked dates (holidays, vacation) - legacy single dates
   blockedDates: string[]; // e.g., ["2026-01-01", "2026-12-25"]
+
+  // Blocked periods (date ranges with optional labels)
+  blockedPeriods?: {
+    startDate: string; // e.g., "2026-01-01"
+    endDate: string;   // e.g., "2026-01-15"
+    label?: string;    // e.g., "Urlaub", "Feiertage"
+  }[];
 
   // How many days in advance can people book
   advanceBookingDays: number; // e.g., 30
@@ -50,6 +57,7 @@ const DEFAULT_CONFIG: CalendarConfig = {
     },
   ],
   blockedDates: [],
+  blockedPeriods: [],
   advanceBookingDays: 30,
   minimumNoticeHours: 24,
 };
@@ -119,9 +127,26 @@ export function isWorkingDay(date: Date, config: CalendarConfig): boolean {
   return config.workingDays.includes(dayOfWeek);
 }
 
-// Check if a date is blocked
+// Check if a date is blocked (single dates or within periods)
 export function isBlockedDate(dateString: string, config: CalendarConfig): boolean {
-  return config.blockedDates.includes(dateString);
+  // Check legacy single dates
+  if (config.blockedDates.includes(dateString)) {
+    return true;
+  }
+
+  // Check blocked periods (date ranges)
+  if (config.blockedPeriods && config.blockedPeriods.length > 0) {
+    const checkDate = new Date(dateString);
+    for (const period of config.blockedPeriods) {
+      const startDate = new Date(period.startDate);
+      const endDate = new Date(period.endDate);
+      if (checkDate >= startDate && checkDate <= endDate) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
 
 // Check if a slot meets minimum notice requirement (Berlin timezone)
